@@ -535,3 +535,7 @@ a{
     text-decoration: none;
     cursor: pointer;
 }
+
+td{
+  color: #111111;
+}
