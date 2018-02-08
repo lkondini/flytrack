@@ -3,8 +3,8 @@ var map = new mapboxgl.Map({
     style: 'mapbox://styles/mapbox/streets-v9',
     center: [78.96288,20.593684],
     zoom: 5,
-    pitch: 45,//45
-    bearing: 25.6,//25.6
+    pitch: 0,//45
+    bearing: 0,//25.6
     hash: true,
     container: 'map'
 });
@@ -86,8 +86,8 @@ map.on('load', function() {
 								_.join(_.map(_.keys(marker.properties), function(key) {
 									return(
 										'<tr>'+
-											'<td>'+key+'</td>'+
-											'<td id="'+key+'">'+marker.properties[key]+'</td>'+
+											'<td>'+ _.startCase(key)+'</td>'+
+											'<td id="'+ key+'">'+marker.properties[key]+'</td>'+
 										'</tr>');
 								}), '') +
 							'</table>'+

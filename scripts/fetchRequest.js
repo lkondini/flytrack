@@ -36,11 +36,11 @@ function loadRequests(pilots){
 			if(key == 'requestdetails'){
 				console.log(key);
 				$.each(pilots[i][key],function(key,value){
-			 		html += '<tr><td>'+key+'</td><td id='+key+'>'+value+'</td></tr>';
+			 		html += '<tr><td>'+ _.startCase(key)+'</td><td id='+key+'>'+value+'</td></tr>';
 				})
 			}
 			else{
-				html += '<tr><td>'+key+'</td><td id='+key+'>'+value+'</td></tr>';
+				html += '<tr><td>'+ _.startCase(key)+'</td><td id='+key+'>'+value+'</td></tr>';
 			}
 		
 		});

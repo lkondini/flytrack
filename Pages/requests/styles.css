@@ -186,3 +186,12 @@ p#complaintMessage{
 p#complaintMess{
     color: black;
 }
+
+table{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+td{
+    padding: 7px;
+}
