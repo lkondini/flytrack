@@ -148,24 +148,18 @@ tbody{
 }
 
 p#complaintMessage{
-    font-size: 20px;
-    font-style: italic;
-    font-weight: bolder;
     color: black;
 }
 /* Modal Content */
 .modal-content {
-    max-height: 400px;
-    min-height: 300px;
-    max-width: 450px;
-    /* height: 250px; */
-    border-radius: 5px;
+    width: 400px;
+    height: 250px;
+    border-radius:5px;
     background-color: #d0d3d8;
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    color: #03090f;
-    overflow: scroll;
+    color:#03090f;
 }
 
 /* The Close Button */
@@ -181,8 +175,4 @@ p#complaintMessage{
     color: #000;
     text-decoration: none;
     cursor: pointer;
-}
-
-p#complaintMess{
-    color: black;
 }

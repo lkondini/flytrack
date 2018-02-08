@@ -1,13 +1,4 @@
 var $showMsg = $('#textarea');
-var locationCoor ;
-var pilot ;
-var drone ;
-
-// window.onload = function() {
-// 	var d = new Date();
-// 	var msgdate = d.toDateString();
-// 	// document.getElementById('date_time').innerHTML = msgdate;
-// }
 
 function fetchNotifications(uid){
 	$.ajax({
@@ -20,7 +11,7 @@ function fetchNotifications(uid){
 			var obj = JSON.parse(cars);
 			console.log(obj);
 			$.each(obj.data.messages, function(i,car){
-				$showMsg.append('<div class="message"><p id="text">'+car.message+'</p></div>');
+				$showMsg.append('<div class="message"><p id="text">'+car.message+'<span class="date_time">23</span></p></div>');
 			});
 			$('lds-roller').css('display','none');
 		},
@@ -33,9 +24,9 @@ function fetchNotifications(uid){
 
 
 function sendNotifications(){
-	var mess = $('textarea#reply').val();
-	var pilotId = $('#pilot_id').html();
-	var droneId = $('#drone_id').html();
+	var mess = $('textarea').val();
+	var pilotId = $('#pilotId').html();
+	var droneId = $('#id').html();
 	$.ajax({
 		type:'POST',
 		url: 'http://djapplication.pythonanywhere.com/send_notification',
@@ -46,8 +37,7 @@ function sendNotifications(){
 		success: function(data){
 			console.log(data);
 			cleartextbox();
-			$showMsg.append('<div class="message"><p id="text">'+mess+'</p></div>');
-
+			$showMsg.append('<div class="message"><p id="text">'+mess+'<span class="date_time">23/11/2017</span></p></div>');
 		},
 		error: function(){
 			console.log('errror in posting');
@@ -65,10 +55,8 @@ function validateUser(){
 		crossDomain: true,
 		success: function(data){
 			var obj = JSON.parse(data);
-			// window.localStorage.setItem('token', obj.data.UserDetails.token);
 			window.localStorage.setItem('token', obj.data.token);
 			window.location.href = "../dashboard/index.html";
-
 		},
 		error: function(error){
 			console.log(error);
@@ -125,13 +113,7 @@ function getComplaints(pilotid){
 		success: function(data){
 			var obj = JSON.parse(data);
 			var complaintArr = obj.data.complaints;
-			if(complaintArr.length >= 1){
-				getEachComplaint(complaintArr);	
-			}
-			else{
-				var message = '<p id="complaintMess">'+obj.msg+'</p>'
-				document.getElementById('complaints').innerHTML = message;
-			}		},
+			getEachComplaint(complaintArr);		},
 		error: function(error){
 			console.log(error);
 		}
@@ -157,33 +139,3 @@ function getrequests(){
 		}
 	});
 }
-
-function sendLocationDetails(coordinates,pilotId,droneId){
-	// var pilotId = $('#userId').html();
-	locationCoor = coordinates;
-	pilot = pilotId;
-	drone = droneId;
-	
-}
-
-function sendLocationApi(){
-	var numtoSendLocation = $('textarea#numbers').val();
-	$.ajax({
-		type: 'POST',
-		headers: {
-			'HeaderToken' : window.localStorage.getItem('token'),
-		},
-		url: 'http://djapplication.pythonanywhere.com/sendlocation',
-		data: {'latlng': locationCoor,'pilotid':pilot,'droneid':drone,'phonenumbers':numtoSendLocation},
-		success: function(data){
-			var obj = JSON.parse(data);
-			reqArr = obj.data;
-			loadRequests(reqArr);
-
-		},
-		error: function(error){
-			console.log(error);
-		}
-	});
-}
-

@@ -7,13 +7,16 @@ function initSubscription(){
 	});
 
 	pubnub.subscribe({
-		channels : ['send_drone_updates']
+		channels : ['send_drone_updates', 'update_notification']
 	});
 
 	pubnub.addListener({
 		message : function(data){
-			droneData[data.message.drone_id] = data.message;
-			droneData[data.message.drone_id].updatedAt = new Date();
+			console.log(data.message);
+			if (data.message.id) {
+				droneData[data.message.id] = data.message;
+				droneData[data.message.id].updatedAt = new Date();
+			}
 		}
 	});
 }

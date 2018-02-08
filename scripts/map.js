@@ -3,16 +3,14 @@ var map = new mapboxgl.Map({
     style: 'mapbox://styles/mapbox/streets-v9',
     center: [78.96288,20.593684],
     zoom: 5,
-    pitch: 45,//45
-    bearing: 25.6,//25.6
+    pitch: 45,
+    bearing: 25.6,
     hash: true,
     container: 'map'
 });
-// console.log(window.localStorage.getItem('token'));
-var coordinatestoFit =[];
-var d = new Date();
 
-var msgdate = d.toDateString();
+var coordinatestoFit =[];
+
 // The 'building' layer in the mapbox-streets vector source contains building-height
 // data from OpenStreetMap.
 map.on('load', function() {
@@ -50,10 +48,7 @@ map.on('load', function() {
 			coordinatestoFit = [];
 
 
-
 			mappedDroneData.forEach(function(marker) {
-				console.log(marker.geometry.coordinates);
-				console.log(marker.properties.altitude);
 			  // create a HTML element for each feature
 				var el = document.createElement('div');
 				el.className = 'marker ' + _.lowerCase(marker.properties.type);
@@ -71,14 +66,15 @@ map.on('load', function() {
 					});
 				}
 				coordinatestoFit.push(marker.geometry.coordinates);
+				console.log(coordinatestoFit);
 
 			  	new mapboxgl.Marker(el)
 			    .setLngLat(marker.geometry.coordinates)
 			    .setPopup(new mapboxgl.Popup({ closeButton: true, closeOnClick: true, offset: 25})
-			  		.setHTML('<div class="popup_container" id="'+ marker.id +'">'+
+			  		.setHTML('<div class="popup_container" id="'+ marker.properties.id +'">'+
 							'<div class="popup_title">'+
 								'<div class="popDetails">'+
-									'<p>Drone ID : '+marker.properties.id+'</p>'+
+									'<p>Drone ID : '+marker.id+'</p>'+
 								'</div>'+
 							'</div>'+
 							'<div class="popup_main_content">'+
@@ -92,14 +88,12 @@ map.on('load', function() {
 								}), '') +
 							'</table>'+
 							'<div class="footer">'+
-								'<button id="btn" onclick="opensSideBar('+"'"+marker.properties.pilot_id+"'"+')" type="submit"><strong>Notify</strong></button>'+
-								'<button onclick="opensendLocation('+"'"+marker.geometry.coordinates+"'"+','+"'"+marker.properties.pilot_id+"'"+','+"'"+marker.properties.drone_id+"'"+')"><strong>Send location</strong></button>'+
+								'<button id="btn" onclick="opensSideBar('+"'"+marker.properties.pilotId+"'"+')" type="submit"><strong>Notify</strong></button>'+
+								'<button><strong>Send location</strong></button>'+
 							'</div>'+
 						'</div>')
 			  		)
 	  			.addTo(map);
-				// if(marker.)
-
 				if (el.id === 'marker-' + popupId) {
 					let clName = $('.mapboxgl-popup').attr('class');
 					let istop = _.includes(clName, 'top');
@@ -120,8 +114,7 @@ map.on('load', function() {
 					
 					var popup = $($('.mapboxgl-popup')[0]);
 		  			popup.offset(popupOffset)
-				}
-
+				} 
 			});
 		}
 	}, 1000);

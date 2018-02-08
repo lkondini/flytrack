@@ -1,28 +1,13 @@
-
-
 function closesSideBar(){
-	// $('#sidenav').css('width','0px');
 	document.getElementById('sidenav').style.width = '0px';
-}
-
-function closesSidelocBar(){
-	document.getElementById('sidenavLoc').style.width = '0px';
-}
-
-function opensendLocation(coordinates,pilotid,droneid){
-	document.getElementById('sidenavLoc').style.width = '300px';
-	// console.log(coordinates,pilotid,droneid);
-	var numtoSendLocation = $('textarea#numbers').val();
-	sendLocationDetails(coordinates,pilotid,droneid,numtoSendLocation)
-
-	// console.log(coordinates);
-	// $('lds-roller').css('display','block');
 }
 
 function opensSideBar(droneId) {
 	document.getElementById('sidenav').style.width = '300px';
 	$('lds-roller').css('display','block');
+
 	showMessages(droneId);
+
 }
 
 var previousId;
@@ -42,5 +27,3 @@ function showMessages(id){
 function cleartextbox(){
 	$('textarea').val('');
 }
-
-
