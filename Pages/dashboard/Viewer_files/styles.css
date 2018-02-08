@@ -1,0 +1,33 @@
+html{
+	height: 100%;
+	width: 100%
+}
+
+body{
+	height: 100%;
+	width: 100%;
+	margin: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+#body-container{
+	height: 100%;
+	width: 100%;
+}
+
+.header{
+	background-color: blue;
+	height: 30%;
+	max-width: 100%;
+}
+
+.body-content{
+	height:70%; 
+}
+
+.main-graph{
+	margin-left: auto;
+	background-color: yellow;
+	height: 70%;
+	max-width: 70%;
+}

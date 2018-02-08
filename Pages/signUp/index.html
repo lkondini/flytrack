@@ -1,0 +1,36 @@
+<DOCTYPE html>
+<html>
+<head>
+	<link href="styles.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Monoton" rel="stylesheet">
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.js"></script>
+	<script type="text/javascript" src="../../scripts/requests.js"></script>
+	<title>Sign up</title>
+</head>
+<body>
+	<div class="container">
+		<div class="background">
+			</div>
+			<div class="nav_outer">
+				<div class="nav_inner">
+					<p id="title">FLY track</p>
+				</div>
+			</div>
+			<div class="main_content">
+				<p id="heading">Sign up</p>
+				<div class="signup_form">
+					<p class="label">FIRST & LAST NAME</p>
+					<input type="text" id="name" name="name" />
+					<p class="label">E-MAIL ADDRESS</p>
+					<input type="text" id="email" name="email" />
+					<p class="label">PASSWORD</p>
+					<input type="password" id="password" name="password" />
+					<button id="registerbtn" type="submit" onclick="registerUser()">Sign up</button>
+					<p id="signinMsg">Already an existing user ?</p>
+					<button id="loginbtn" type="submit"><a href ="../login/index.html">Login</a></button>
+				</div>
+			</div>
+	</div>
+</body>
+</html>

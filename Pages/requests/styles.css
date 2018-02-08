@@ -1,0 +1,188 @@
+body{
+	margin: 0px !important;
+    background-color: #071725;
+	font-family: 'Open Sans', sans-serif;
+}
+
+#body-container{
+	height: 782px;
+	width: 100%;
+}
+
+
+.nav-outer{
+	position: relative;
+}
+
+
+#card-inner{
+	justify-content: center;
+	display: flex;
+    flex-wrap: wrap;
+}
+
+#rejectbtn{
+	margin: 10px;
+}
+.card-outer{
+}
+
+#rejectbtn{
+	font-weight: 200;
+    border-color: #ff695e;
+    box-shadow: 0 0 2px 1px #86435957;
+    color: white;
+    font-size: 15px;
+    margin: 5px;
+    cursor: pointer;
+    outline: none;
+    background-color: #ff695e;
+    width: 100px;
+    border-radius: 2px;
+    padding: 4px;
+}
+
+#acceptbtn{
+	font-weight: 200;
+    border-color: #4CAF50;
+    box-shadow: 0 0 2px 1px #2d483f57;
+    color: white;
+    font-size: 15px;
+    margin: 2px;
+    cursor: pointer;
+    outline: none;
+    background-color: #4CAF50;
+    width: 100px;
+    border-radius: 2px;
+    padding: 4px;
+}
+
+#complaintbtn{
+    font-weight: 200;
+    border-color: #38404a;
+    box-shadow: 0 0 2px 1px #2d483f57;
+    color: white;
+    font-size: 15px;
+    margin: 2px;
+    cursor: pointer;
+    outline: none;
+    background-color: #38404a;
+    width: 100px;
+    border-radius: 2px;
+    padding: 4px;
+}
+
+#inner{
+    color:white;
+	padding: 10px;
+    text-align: center;
+    min-width: 300px;
+    box-shadow: 0 0px 5px 1px rgb(162, 114, 79);
+    margin: 20px;
+    border-radius: 5px;
+    background: none;
+    /*background-color: #353535;*/
+    min-height: 150px;
+    max-width: 500px;
+}
+
+h2{
+    letter-spacing: 2px;
+    text-align: center;
+    padding-left: 10px;
+    font-size:25px;
+    color:#ea9d65;
+}
+
+a{
+    padding-left: 10px;
+    font-size: 12px;
+    text-decoration: none;
+    color: #ea9d65;
+}
+a:hover{
+    color: #e4e4e4;
+}
+
+#refreshbtn{
+    background: none;
+    cursor: pointer;
+    border: #040404;
+    box-shadow: 0px 0px 2px 1px;
+    font-weight: lighter;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #ea9d65;
+    padding: 5px;
+    margin-left: 50px;
+    outline: none;
+}
+
+#refreshbtn:hover{
+    color: #e4e4e4;
+}
+
+p{
+    font-weight: lighter;
+    color: darkgrey;
+    color: white;
+	padding: 0px 10px 0px 10px;
+}
+
+tbody{
+    margin-bottom: 20px;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+}
+
+p#complaintMessage{
+    font-size: 20px;
+    font-style: italic;
+    font-weight: bolder;
+    color: black;
+}
+/* Modal Content */
+.modal-content {
+    max-height: 400px;
+    min-height: 300px;
+    max-width: 450px;
+    /* height: 250px; */
+    border-radius: 5px;
+    background-color: #d0d3d8;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    color: #03090f;
+    overflow: scroll;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+p#complaintMess{
+    color: black;
+}

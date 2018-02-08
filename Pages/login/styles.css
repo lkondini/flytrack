@@ -1,0 +1,137 @@
+body{
+	margin: 0;
+    background-color: black;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.container{
+    height : 803px;
+}
+
+.main_content{
+    flex-direction: column;
+    display: flex;
+}
+
+.nav_outer{
+    height:20%;
+}
+
+.nav_inner{
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+}
+
+input{
+    padding-left: 10px;
+    border-bottom-color: #686c6e;
+    color: #ffffff;
+    outline: none;
+    width:280px;
+    border-width: thin;
+    font-weight: lighter;
+    font-size: 16px;
+    height: 2.5em;
+    letter-spacing: 0.06em;
+    margin: 5px;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
+.login_form{
+    width: 500px;
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+img{
+    margin: 0px 5px 30px 5px;
+    margin-left: auto;
+    justify-self: space-around;
+    margin-right: auto;
+}
+
+p.login{
+    margin-bottom: 0px;
+    color: #70a3d2;
+    font-size: 17px;
+    text-align: center;
+    letter-spacing: 1.2px;
+}
+.background{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 803px;
+    width: 100%;
+    background-size: cover;
+    z-index: -1;
+    opacity: 0.3;
+    background-image: url("../../Assets/background.jpg"); 
+}
+
+#loginbtn{
+    font-weight: 200;
+    border-color: #696c6f;
+    background: none;
+    background-color: none;
+    font-size: 20px;
+    cursor: pointer;
+    outline: none;
+    margin-top: 50px;
+    color: #d1d3d4;
+    border-radius: 5px;
+    width: 250px;
+    height: 40px;
+    letter-spacing: 1;
+}
+
+p#signupMsg{
+    margin-left: auto;
+    padding-right: 10px;
+    font-size: 15px;
+    color: #6e95a4;
+    margin-left: auto;
+}
+
+#signupbtn{
+    margin: 20px;
+    padding: 8px;
+    color: #d1d3d4;
+    border-radius: 5px;
+    font-weight: 200;
+    border-color: #696c6f;
+    background: none;
+    background-color: none;
+    font-size: 20px;
+    cursor: pointer;
+    outline: none;
+    letter-spacing: 1;
+}
+
+p#title{
+    margin: 20px;
+    cursor: pointer;
+    padding-left: 20px;
+    font-size: 35px;
+    color:#99a3af;
+    font-family: 'Monoton', cursive;
+}
+
+#heading{
+    color: #d2d3d4;
+    font-size: 40px;
+    display: flex;
+    justify-content: space-around;
+}
+
+a{
+    color: #d1d3d4;
+    text-decoration: none;
+}
