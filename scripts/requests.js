@@ -65,10 +65,9 @@ function validateUser(){
 		crossDomain: true,
 		success: function(data){
 			var obj = JSON.parse(data);
-			// window.localStorage.setItem('token', obj.data.UserDetails.token);
 			window.localStorage.setItem('token', obj.data.token);
+			window.localStorage.setItem('userId', obj.data.UserDetails.id);
 			window.location.href = "../dashboard/index.html";
-
 		},
 		error: function(error){
 			console.log(error);
@@ -96,7 +95,7 @@ function registerUser(){
 
 function userRequests(Id){
 	var requestId = $('#requestid').html();
-	var userId = $('#userId').html();
+	var userId = localStorage.getItem('userId');
 	var status = $('#'+Id+'').val();
 	$.ajax({
 		type: 'POST',
@@ -139,7 +138,7 @@ function getComplaints(pilotid){
 }
 
 function getrequests(){
-	// var pilotId = $('#userId').html();
+	initSubscription();
 	$.ajax({
 		type: 'GET',
 		headers: {

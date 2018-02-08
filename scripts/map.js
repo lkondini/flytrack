@@ -52,8 +52,6 @@ map.on('load', function() {
 
 
 			mappedDroneData.forEach(function(marker) {
-				console.log(marker.geometry.coordinates);
-				console.log(marker.properties.altitude);
 			  // create a HTML element for each feature
 				var el = document.createElement('div');
 				el.className = 'marker ' + _.lowerCase(marker.properties.type);
@@ -75,7 +73,7 @@ map.on('load', function() {
 			  	new mapboxgl.Marker(el)
 			    .setLngLat(marker.geometry.coordinates)
 			    .setPopup(new mapboxgl.Popup({ closeButton: true, closeOnClick: true, offset: 25})
-			  		.setHTML('<div class="popup_container" id="'+ marker.id +'">'+
+			  		.setHTML('<div class="popup_container" id="'+ marker.properties.id +'">'+
 							'<div class="popup_title">'+
 								'<div class="popDetails">'+
 									'<p>Drone ID : '+marker.properties.id+'</p>'+
@@ -92,8 +90,8 @@ map.on('load', function() {
 								}), '') +
 							'</table>'+
 							'<div class="footer">'+
-								'<button id="btn" onclick="opensSideBar('+"'"+marker.properties.pilot_id+"'"+')" type="submit"><strong>Notify</strong></button>'+
-								'<button onclick="opensendLocation('+"'"+marker.geometry.coordinates+"'"+','+"'"+marker.properties.pilot_id+"'"+','+"'"+marker.properties.drone_id+"'"+')"><strong>Send location</strong></button>'+
+								'<button id="btn" onclick="opensSideBar('+"'"+marker.properties.pilotId+"'"+')" type="submit"><strong>Notify</strong></button>'+
+								'<button onclick="opensendLocation('+"'"+marker.geometry.coordinates+"'"+','+"'"+marker.properties.pilotId+"'"+','+"'"+marker.properties.drone_id+"'"+')"><strong>Send location</strong></button>'+
 							'</div>'+
 						'</div>')
 			  		)
