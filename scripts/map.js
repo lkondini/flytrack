@@ -37,7 +37,7 @@ map.on('load', function() {
 	  		$('.marker').remove();
 	  		// droneData = _filter(droneData)
 			var mappedDroneData = _.map(droneData, function (item, id) {
-				var isInValid = checkRules(item);
+				var color = checkRules(item);
 				return ({
 					id: id,
 					type: 'Feature',
@@ -45,7 +45,7 @@ map.on('load', function() {
 						type: 'point',
 						coordinates: [item.long, item.lat],
 					},
-					status: isInValid ? 'red' : 'green',
+					status: color,
 					properties: item,
 				})
 			});
@@ -54,7 +54,6 @@ map.on('load', function() {
 
 
 			mappedDroneData.forEach(function(marker) {
-				console.log(marker)
 			  // create a HTML element for each feature
 				var el = document.createElement('div');
 				el.className = 'marker ' + _.lowerCase(marker.status);
@@ -166,7 +165,6 @@ map.on('load', function() {
         var bounds = coordinates.reduce(function(bounds, coord) {
             return bounds.extend(coord);
         }, new mapboxgl.LngLatBounds(coordinates[0], coordinates[0]));
-        console.log(bounds);
         map.fitBounds(bounds, {
             padding: 20
         });
@@ -237,7 +235,7 @@ return isInZone;
 function checkRules(item) {
 	var requests = getRequestsById(item.pilotId);
 	const filteredRequests = filterByTime(requests);
-	var isInValid = _.isEmpty(filteredRequests);
+	var isInValid = _.isEmpty(filteredRequests) && 'blue';
 	if (!_.isEmpty(filteredRequests)) {
 		var inValidRequests = _.map(requests, function(request) {
 			var valid = true;
@@ -253,7 +251,7 @@ function checkRules(item) {
 			return req == true
 		}));
 	}
-	return isInValid;
+	return isInValid ? 'red' : 'green';
 }
 
 $(function () {
