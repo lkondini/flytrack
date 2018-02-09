@@ -13,8 +13,8 @@ function initSubscription(){
 	pubnub.addListener({
 		message : function(data){
 			if (data.message.id || data.message.drone_id) {
-				droneData[data.message.id] = data.message;
-				droneData[data.message.id].updatedAt = new Date();
+				droneData[data.message.pilotId] = data.message;
+				droneData[data.message.pilotId].updatedAt = new Date();
 			} else {
 				console.log(data.message);
 			}
