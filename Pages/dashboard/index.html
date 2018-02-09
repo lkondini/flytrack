@@ -2,12 +2,15 @@
 <html>
 <head>
 	<link href="styles.css" rel="stylesheet">
+	
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Monoton" rel="stylesheet">
 	<script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.20.1.js"></script>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js" ></script>
 	<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.js"></script>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.css' rel='stylesheet'>
+		<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.css' rel='stylesheet'>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAx4WhFsqOL65j2guwDG51a3WwgfN_x2qM&libraries=geometry"></script>
 	<title>Drone</title>
 </head>
 <body>
@@ -34,7 +37,7 @@
 			<div id="map">
 				<!-- <button type="submit" onclick="initSubscription()" style ="padding-top: 100px;">Show</button> -->
 			</div>
-
+			<pre id='coordinates' class='ui-coordinates'></pre>
 		</div>
 	</div>
 	<div id="sidenavLoc">
