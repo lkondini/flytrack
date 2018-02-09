@@ -11,7 +11,7 @@ var map = new mapboxgl.Map({
 // console.log(window.localStorage.getItem('token'));
 var coordinatestoFit =[];
 var d = new Date();
-
+var aa = 0;
 var msgdate = d.toDateString();
 // The 'building' layer in the mapbox-streets vector source contains building-height
 // data from OpenStreetMap.
@@ -37,6 +37,7 @@ map.on('load', function() {
 	  		$('.marker').remove();
 	  		// droneData = _filter(droneData)
 			var mappedDroneData = _.map(droneData, function (item, id) {
+				var isInValid = checkRules(item);
 				return ({
 					id: id,
 					type: 'Feature',
@@ -44,6 +45,7 @@ map.on('load', function() {
 						type: 'point',
 						coordinates: [item.long, item.lat],
 					},
+					status: isInValid ? 'red' : 'green',
 					properties: item,
 				})
 			});
@@ -52,9 +54,10 @@ map.on('load', function() {
 
 
 			mappedDroneData.forEach(function(marker) {
+				console.log(marker)
 			  // create a HTML element for each feature
 				var el = document.createElement('div');
-				el.className = 'marker ' + _.lowerCase(marker.properties.type);
+				el.className = 'marker ' + _.lowerCase(marker.status);
 				el.id = 'marker-' + marker.id;
 				// var imgUrl = '../../Assets/marker-green.png';
 				// let currentHeightOfDrone = marker.properties['elevation']
@@ -92,11 +95,11 @@ map.on('load', function() {
 							'<div class="footer">'+
 								'<button id="btn" onclick="opensSideBar('+"'"+marker.properties.pilotId+"'"+')" type="submit"><strong>Notify</strong></button>'+
 								'<button onclick="opensendLocation('+"'"+marker.geometry.coordinates+"'"+','+"'"+marker.properties.pilotId+"'"+','+"'"+marker.properties.drone_id+"'"+')"><strong>Send location</strong></button>'+
+								'<button id="geojson" onclick="draw('+"'"+marker.properties.pilotId+"'"+')" type="submit"><strong>See zone</strong></button>'+
 							'</div>'+
 						'</div>')
 			  		)
 	  			.addTo(map);
-				// if(marker.)
 
 				if (el.id === 'marker-' + popupId) {
 					let clName = $('.mapboxgl-popup').attr('class');
@@ -171,5 +174,88 @@ map.on('load', function() {
 });
 
 
+var a = [
+	{
+		starttime: new Date(),
+		endtime: new Date(),
+	}
+]
 
+function filterByTime(requests) {
+	return _.filter(requests, function(request) {
+		return moment().isSameOrBefore(request.endtime) && moment().isSameOrAfter(request.starttime);
+	});
+}
 
+function draw (pilotId) {
+	$('.mapboxgl-popup').remove();
+	const requests = getRequestsById(pilotId);
+	const filteredRequests = filterByTime(requests);
+	_.each(filteredRequests, function(request) {
+		var cords = _.map(request.coordinates.split('-'), cord => cord.split(','));
+		console.log(cords)
+		try {
+			map.addLayer({
+				'id': _.toString(request.id),
+				'type': 'fill',
+				'source': {
+					'type': 'geojson',
+					'data': {
+						'type': 'Feature',
+						'geometry': {
+							'type': 'Polygon',
+							'coordinates': [cords]
+						}
+					}
+				},
+				'layout': {},
+				'paint': {
+					'fill-color': '#f00',
+					'fill-outline-color': '#f00', 
+					'fill-opacity': 0.2
+				}
+			});
+		} catch (e) {
+			console.log(e)
+		}
+	});
+}
+
+function containsLocation(cordsString, point) {
+var cords = _.map(cordsString,
+              function(cord){
+                return {
+                  lat: _.toNumber(_.split(cord, ',')[0]),
+                  lng: _.toNumber(_.split(cord, ',')[1])
+                }
+              });
+var polygon = new google.maps.Polygon({ paths: cords });
+var isInZone = google.maps.geometry.poly.containsLocation(new google.maps.LatLng(point.lat, point.lng), polygon);
+return isInZone;
+}
+
+function checkRules(item) {
+	var requests = getRequestsById(item.pilotId);
+	const filteredRequests = filterByTime(requests);
+	var isInValid = _.isEmpty(filteredRequests);
+	if (!_.isEmpty(filteredRequests)) {
+		var inValidRequests = _.map(requests, function(request) {
+			var valid = true;
+			if (!containsLocation(request.coordinates, { lat: item.lat, lng: item.lng })) {
+				valid = false;
+			}
+			if (item.elevation > request.altitude) {
+				valid = false;
+			}
+			return valid;
+		});
+		isInValid = _.isEmpty(_.filter(inValidRequests, function(req) {
+			return req == true
+		}));
+	}
+	return isInValid;
+}
+
+$(function () {
+	getApprovedRequests();
+});

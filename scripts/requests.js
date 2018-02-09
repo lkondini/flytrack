@@ -34,8 +34,8 @@ function fetchNotifications(uid){
 
 function sendNotifications(){
 	var mess = $('textarea#reply').val();
-	var pilotId = $('#pilot_id').html();
-	var droneId = $('#drone_id').html();
+	var pilotId = $('#pilotId').html();
+	var droneId = $('#id').html();
 	$.ajax({
 		type:'POST',
 		url: 'http://djapplication.pythonanywhere.com/send_notification',
@@ -186,3 +186,30 @@ function sendLocationApi(){
 	});
 }
 
+window.requestsStore = {};
+
+function getApprovedRequests() {
+	$.ajax({
+		type: 'GET',
+		headers: {
+			'HeaderToken' : window.localStorage.getItem('token'),
+		},
+		url: 'http://djapplication.pythonanywhere.com/get_all_approved_requests',
+		success: function(data){
+			var results = JSON.parse(data);
+			if (results.status == 200) {
+				_.each(results.data, function(result) {
+					requestsStore[result.id] = result;
+				});
+			}
+
+		},
+		error: function(error){
+			console.log(error);
+		}
+	});
+}
+
+function getRequestsById(pilotId) {
+	return _.filter(requestsStore, request => request.pilotid == pilotId);
+}
