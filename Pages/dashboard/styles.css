@@ -74,7 +74,7 @@ p#title{
       cursor: pointer;
     }
 
-.marker.valid {
+.marker.green {
   background-image: url('../../Assets/drone-green.png');
   background-size: contain;
   background-repeat: no-repeat;
@@ -83,7 +83,7 @@ p#title{
   cursor: pointer;
 }
 
-.marker.invalid {
+.marker.red {
   background-image: url('../../Assets/drone-red.png');
   background-size: contain;
   background-repeat: no-repeat;

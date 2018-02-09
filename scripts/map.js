@@ -58,12 +58,6 @@ map.on('load', function() {
 				var el = document.createElement('div');
 				el.className = 'marker ' + _.lowerCase(marker.status);
 				el.id = 'marker-' + marker.id;
-				// var imgUrl = '../../Assets/marker-green.png';
-				// let currentHeightOfDrone = marker.properties['elevation']
-				// if(Math.round(currentHeightOfDrone) >= 700){
-				// 	$('.marker').css('background-image','url('+imgUrl+')');
-				// }
-				// make a marker for each feature and add to the map
 				const popupId = $('.popup_container').attr('id');
 				if (marker.id === popupId) {
 					_.keys(marker.properties).forEach(function (key, index) {
@@ -72,7 +66,7 @@ map.on('load', function() {
 				}
 				coordinatestoFit.push(marker.geometry.coordinates);
 
-			  	new mapboxgl.Marker(el)
+			  	var m = new mapboxgl.Marker(el)
 			    .setLngLat(marker.geometry.coordinates)
 			    .setPopup(new mapboxgl.Popup({ closeButton: true, closeOnClick: true, offset: 25})
 			  		.setHTML('<div class="popup_container" id="'+ marker.properties.id +'">'+
@@ -98,8 +92,8 @@ map.on('load', function() {
 							'</div>'+
 						'</div>')
 			  		)
-	  			.addTo(map);
-
+				  .addTo(map);
+				$(marker._element).addClass(m.status)
 				if (el.id === 'marker-' + popupId) {
 					let clName = $('.mapboxgl-popup').attr('class');
 					let istop = _.includes(clName, 'top');
@@ -191,7 +185,6 @@ function draw (pilotId) {
 	const filteredRequests = filterByTime(requests);
 	_.each(filteredRequests, function(request) {
 		var cords = _.map(request.coordinates.split('-'), cord => cord.split(','));
-		console.log(cords)
 		try {
 			map.addLayer({
 				'id': _.toString(request.id),
