@@ -95,7 +95,7 @@ map.on('load', function() {
 							'<div class="footer">'+
 								'<button id="btn" onclick="opensSideBar('+"'"+marker.properties.pilotId+"'"+')" type="submit"><strong>Notify</strong></button>'+
 								'<button onclick="opensendLocation('+"'"+marker.geometry.coordinates+"'"+','+"'"+marker.properties.pilotId+"'"+','+"'"+marker.properties.drone_id+"'"+')"><strong>Send location</strong></button>'+
-								'<button id="geojson" onclick="draw('+"'"+marker.properties.pilotId+"'"+')" type="submit"><strong>Show issues zone</strong></button>'+
+								'<button id="geojson" onclick="draw('+"'"+marker.properties.pilotId+"'"+')" type="submit"><strong>Show zone</strong></button>'+
 							'</div>'+
 						'</div>')
 			  		)
